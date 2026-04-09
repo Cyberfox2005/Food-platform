@@ -1,0 +1,21 @@
+# OS Files
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+
+# IDEs
+.idea/
+.vscode/
+*.iml
+
+# Build & Dist
+dist/
+build/
+bin/
+out/
+.gradle/
+
+# Secrets
+.env
+local.properties

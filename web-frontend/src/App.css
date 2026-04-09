@@ -1,0 +1,31 @@
+/* Custom variables or styles not covered by Tailwind v4 */
+:root {
+  --font-display: 'Playfair Display', serif;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar for premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #08060d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #aa3bff33;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #aa3bff66;
+}
+
+/* Add any specific component-level animations or overrides here */
+.container {
+  max-width: 1200px !important;
+}
