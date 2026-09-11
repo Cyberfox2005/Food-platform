@@ -15,10 +15,19 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
+app.set('io', io);
 
 // Routes
 const productRoutes = require('./src/routes/api/v1/products');
+const orderRoutes = require('./src/routes/api/v1/orders');
+const authRoutes = require('./src/routes/api/v1/auth');
 app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/orders', orderRoutes);
+app.use('/api/v1/auth', authRoutes);
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', service: 'gravity-grill-api' });
+});
 
 // Socket.io connection
 io.on('connection', (socket) => {

@@ -1,0 +1,23 @@
+[
+	{
+		"id": "dev-customer-1",
+		"name": "Customer Dev",
+		"email": "customer@gravitygrill.dev",
+		"passwordHash": "6e9499d5cbfa918b92e8ced275188fa82f3ca8b537b9597393c49dea946b379ecc9348118f97ff6bc20eaceba8dc89ac9162f5f32b75b371560b82894f23752a",
+		"role": "customer"
+	},
+	{
+		"id": "dev-admin-2",
+		"name": "Admin Dev",
+		"email": "admin@gravitygrill.dev",
+		"passwordHash": "d7facdc959a0e0f7582b29c359bcb9d6b1349813fb94cf5a848fc9d724748708cbdaef70da76f34f6788c9af51ce7d8e7106a8cee5701ffa4b253dd4678278d7",
+		"role": "admin"
+	},
+	{
+		"id": "dev-staff-3",
+		"name": "Staff Dev",
+		"email": "staff@gravitygrill.dev",
+		"passwordHash": "95b084ae6d1a2a5cbea1d419ab0f472c38fb3583849389c8123fb12b962252565fea265bebd31b8e88bb889c80efe5f10f941159fd2049552c55374fff72213b",
+		"role": "staff"
+	}
+]

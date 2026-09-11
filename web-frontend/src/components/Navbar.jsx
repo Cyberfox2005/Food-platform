@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Menu, X, Rocket, User } from 'lucide-react';
+import { ShoppingCart, Menu, X, Rocket, User, Bell, Tag, MapPin } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { motion as Motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { cartCount } = useCart();
   const location = useLocation();
+  const { language, setLanguage, text } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -17,10 +19,12 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: 'Home', path: '/' },
-    { name: 'Menu', path: '/menu' },
+    { name: text.home, path: '/' },
+    { name: text.menu, path: '/menu' },
     { name: 'Our Craft', path: '/about' },
-    { name: 'Contact', path: '/contact' },
+    { name: text.offers, path: '/offers' },
+    { name: text.locations, path: '/locations' },
+    { name: text.contact, path: '/contact' },
   ];
 
   return (
@@ -47,8 +51,12 @@ const Navbar = () => {
           
           <div className="h-6 w-px bg-white/10 mx-2"></div>
 
-          <Link to="/profile" className={`p-2 rounded-xl transition-all ${location.pathname === '/profile' ? 'bg-brand-primary text-white' : 'text-text-dim hover:bg-white/5 hover:text-white'}`}>
+          <Link to={localStorage.getItem('gravity_token') ? '/profile' : '/auth'} aria-label="Account" className={`p-2 rounded-xl transition-all ${location.pathname === '/profile' || location.pathname === '/auth' ? 'bg-brand-primary text-white' : 'text-text-dim hover:bg-white/5 hover:text-white'}`}>
             <User className="w-5 h-5" />
+          </Link>
+          <Link to="/profile#notifications" aria-label="Notifications" className="relative p-2 text-text-dim hover:text-white">
+            <Bell className="w-5 h-5" />
+            <span className="absolute top-1 right-1 w-2 h-2 rounded-full bg-brand-primary" />
           </Link>
 
           <Link to="/cart" className="relative group p-2 rounded-xl hover:bg-white/5 transition-all">
@@ -60,6 +68,7 @@ const Navbar = () => {
             )}
           </Link>
           <Link to="/menu" className="btn-premium py-2 px-6 text-sm">Order Now</Link>
+          <select aria-label="Language" value={language} onChange={event => setLanguage(event.target.value)} className="bg-transparent text-text-dim text-xs border border-white/10 rounded-lg px-2 py-2"><option value="en">EN</option><option value="fr">FR</option><option value="ar">عربي</option></select>
         </div>
 
         {/* Mobile Toggle */}
@@ -101,7 +110,8 @@ const Navbar = () => {
                   {link.name}
                 </Link>
               ))}
-              <button className="btn-premium py-4 px-6 text-lg">Order Now</button>
+              <Link to="/offers" onClick={() => setIsMenuOpen(false)} className="flex items-center justify-center gap-2 text-text-dim"><Tag className="w-4 h-4" /> Today's offers</Link>
+              <Link to="/menu" onClick={() => setIsMenuOpen(false)} className="btn-premium py-4 px-6 text-lg">Order Now</Link>
             </div>
           </Motion.div>
         )}

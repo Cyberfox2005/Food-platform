@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Rocket, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Rocket, Camera, MessageCircle } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -16,9 +16,9 @@ const Footer = () => {
             Crafting out-of-this-world dining experiences since 2026. Hand-crafted, locally sourced, and seasoned with stardust.
           </p>
           <div className="flex gap-4">
-            <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-primary/50 hover:text-brand-primary transition-all"><Facebook className="w-5 h-5" /></a>
-            <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-primary/50 hover:text-brand-primary transition-all"><Instagram className="w-5 h-5" /></a>
-            <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-primary/50 hover:text-brand-primary transition-all"><Twitter className="w-5 h-5" /></a>
+            <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-primary/50 hover:text-brand-primary transition-all"><Camera className="w-5 h-5" /></a>
+            <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-primary/50 hover:text-brand-primary transition-all"><MessageCircle className="w-5 h-5" /></a>
+            <a href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-brand-primary/50 hover:text-brand-primary transition-all"><Rocket className="w-5 h-5" /></a>
           </div>
         </div>
         

@@ -2,6 +2,7 @@ import { ShoppingCart, Flame, Leaf, WheatOff, Star, Heart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useUser } from '../context/UserContext';
 import { motion as Motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -26,11 +27,13 @@ const ProductCard = ({ product }) => {
       className="premium-card group"
     >
       <div className="mb-6 h-64 overflow-hidden rounded-2xl bg-white/5 relative">
-        <img 
-          src={product.image} 
-          alt={product.name} 
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-        />
+        <Link to={`/product/${product.id}`} aria-label={`View ${product.name}`}>
+          <img 
+            src={product.image} 
+            alt={product.name} 
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
+        </Link>
         
         {/* Floating Icons */}
         <div className="absolute top-4 left-4 flex gap-2">
@@ -60,7 +63,7 @@ const ProductCard = ({ product }) => {
       </div>
       
       <div className="flex justify-between items-start mb-2">
-        <h3 className="text-2xl font-display">{product.name}</h3>
+        <Link to={`/product/${product.id}`} className="text-2xl font-display hover:text-brand-primary transition-colors">{product.name}</Link>
         <span className="text-brand-primary font-bold text-xl">${product.price}</span>
       </div>
 

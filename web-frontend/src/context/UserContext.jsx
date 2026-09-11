@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import { updateOrderStatus as updateOrderStatusApi } from '../lib/api';
 
 const UserContext = createContext();
 
@@ -32,14 +33,21 @@ export const UserProvider = ({ children }) => {
   };
 
   const addOrder = (order) => {
+    const savedOrder = { ...order, id: order.id || Date.now(), date: order.date || order.createdAt || new Date().toISOString() };
     setOrderHistory(prev => [
-      { ...order, id: Date.now(), date: new Date().toISOString() },
+      savedOrder,
       ...prev
     ]);
+    return savedOrder;
+  };
+
+  const updateOrderStatus = (orderId, status) => {
+    setOrderHistory(prev => prev.map(order => order.id === orderId ? { ...order, status } : order));
+    updateOrderStatusApi(orderId, status).catch(() => undefined);
   };
 
   return (
-    <UserContext.Provider value={{ favorites, toggleFavorite, orderHistory, addOrder }}>
+    <UserContext.Provider value={{ favorites, toggleFavorite, orderHistory, addOrder, updateOrderStatus }}>
       {children}
     </UserContext.Provider>
   );

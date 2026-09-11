@@ -1,0 +1,19 @@
+import { useState } from 'react';
+import { ArrowLeft, ChefHat, Clock, CheckCircle2, Flame } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { useUser } from '../context/UserContext';
+
+const columns = [['received', 'NEW'], ['preparing', 'PREPARING'], ['ready', 'READY'], ['delivered', 'COMPLETED']];
+
+const Kitchen = () => {
+  const { orderHistory, updateOrderStatus } = useUser();
+  const [filter, setFilter] = useState('all');
+  const fallback = [{ id: 88214, total: 42, status: 'preparing', items: [{ name: 'Galactic Classic', quantity: 1 }, { name: 'Comet Fries', quantity: 1 }] }, { id: 88213, total: 28, status: 'received', items: [{ name: 'Meteor Wings', quantity: 2 }] }];
+  const orders = orderHistory.length ? orderHistory : fallback;
+
+  return <div className="min-h-screen bg-[#0b0d12] text-white"><header className="border-b border-white/10 px-6 lg:px-10 py-5 flex items-center justify-between"><div className="flex items-center gap-4"><Link to="/admin" className="p-2 rounded-lg hover:bg-white/5"><ArrowLeft className="w-5 h-5" /></Link><div><p className="text-xs uppercase tracking-[0.25em] text-brand-primary">Gravity Ops</p><h1 className="text-2xl font-display">Kitchen display</h1></div></div><div className="flex items-center gap-3 text-sm text-green-400"><span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" /> Live service <select value={filter} onChange={event => setFilter(event.target.value)} className="ml-4 bg-white/5 border border-white/10 rounded-lg px-3 py-2 text-white"><option value="all">All stations</option><option value="mains">Mains</option><option value="sides">Sides</option></select></div></header><main className="p-6 lg:p-10"><div className="grid xl:grid-cols-4 gap-5">{columns.map(([status, title]) => <section key={status} className="min-h-[500px] bg-white/[0.025] rounded-2xl p-4 border border-white/10"><div className="flex items-center justify-between mb-5"><h2 className="font-bold tracking-wider text-sm">{title}</h2><span className="w-7 h-7 rounded-full bg-white/10 flex items-center justify-center text-xs">{orders.filter(order => order.status === status).length}</span></div><div className="space-y-4">{orders.filter(order => order.status === status).map(order => <article key={order.id} className="bg-[#171a24] border border-white/10 rounded-xl p-4"><div className="flex justify-between mb-4"><strong>#{String(order.id).slice(-6)}</strong><span className="text-xs text-text-dim"><Clock className="inline w-3 h-3 mr-1" />{status === 'preparing' ? '08:42' : 'Now'}</span></div><div className="space-y-2 mb-5">{(order.items || []).map(item => <div key={item.name} className="flex gap-2 text-sm"><span className="text-brand-primary font-bold">{item.quantity}×</span><span>{item.name}</span></div>)}</div>{status !== 'delivered' ? <button onClick={() => updateOrderStatus(order.id, nextStatus(status))} className="w-full py-2 rounded-lg bg-brand-primary text-xs font-bold uppercase tracking-wider">{status === 'received' ? 'Start' : status === 'preparing' ? 'Mark ready' : 'Complete'} </button> : <div className="text-xs text-green-400 flex items-center gap-2"><CheckCircle2 className="w-4 h-4" /> Completed</div>}</article>)}</div></section>)}</div><div className="mt-8 p-5 border border-orange-400/20 bg-orange-400/5 rounded-2xl flex items-center gap-4"><Flame className="text-orange-300" /><div><strong>Kitchen pace</strong><p className="text-sm text-text-dim">Keep average preparation time under 18 minutes.</p></div><span className="ml-auto text-xl font-bold text-orange-300">14:32</span></div></main></div>;
+};
+
+const nextStatus = status => status === 'received' ? 'preparing' : status === 'preparing' ? 'ready' : 'delivered';
+
+export default Kitchen;

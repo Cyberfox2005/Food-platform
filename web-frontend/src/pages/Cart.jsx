@@ -112,9 +112,9 @@ const Cart = () => {
               </div>
 
               <div className="space-y-4">
-                <button className="btn-premium w-full py-4 flex items-center justify-center gap-2">
+                <Link to="/checkout" className="btn-premium w-full py-4 flex items-center justify-center gap-2">
                   Proceed to Checkout <ArrowRight className="w-5 h-5" />
-                </button>
+                </Link>
                 <Link to="/menu" className="block text-center text-sm text-text-dim hover:text-brand-primary transition-colors">
                   Continue Shopping
                 </Link>

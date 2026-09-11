@@ -87,6 +87,17 @@ const About = () => {
         </div>
       </section>
 
+      <section className="py-24 border-y border-white/5">
+        <div className="container mx-auto px-6">
+          <div className="flex items-end justify-between mb-10"><div><p className="text-brand-primary uppercase tracking-[0.3em] text-xs font-bold mb-3">Verified voyagers</p><h2 className="text-4xl md:text-6xl font-display">Loved across <span className="text-gradient">dimensions.</span></h2></div><div className="text-brand-primary text-lg">4.9 / 5.0</div></div>
+          <div className="grid md:grid-cols-3 gap-6">{[
+            ['Maya R.', 'The Galactic Classic is genuinely one of the best burgers I have had. Fast, warm, and wildly flavorful.', '2 days ago'],
+            ['Alex T.', 'The customization made ordering easy, and the fries arrived perfectly crisp.', '1 week ago'],
+            ['Jordan K.', 'A beautiful experience from menu to pickup. The team clearly cares about the details.', '2 weeks ago'],
+          ].map(([name, review, date]) => <blockquote key={name} className="bg-white/5 border border-white/10 rounded-2xl p-6"><div className="flex gap-1 text-yellow-400 mb-5">{[1, 2, 3, 4, 5].map(star => <span key={star}>★</span>)}</div><p className="text-text-dim leading-relaxed mb-6">“{review}”</p><footer><strong>{name}</strong><span className="block text-xs text-text-dim mt-1">Verified order · {date}</span></footer></blockquote>)}</div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

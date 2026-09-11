@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Search, Filter, SlidersHorizontal, Sparkles } from 'lucide-react';
-import { categories } from '../data/menuData';
+import { Search, Sparkles, ArrowUpDown } from 'lucide-react';
+import { categories, products as localProducts } from '../data/menuData';
 import ProductCard from '../components/ProductCard';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -12,6 +12,7 @@ const Menu = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('all');
   const [activeFilters, setActiveFilters] = useState([]);
+  const [sortBy, setSortBy] = useState('recommended');
 
   useEffect(() => {
     fetch('http://localhost:5000/api/v1/products')
@@ -22,6 +23,7 @@ const Menu = () => {
       })
       .catch(err => {
         console.error('Error fetching products:', err);
+        setProducts(localProducts);
         setLoading(false);
       });
   }, []);
@@ -43,6 +45,11 @@ const Menu = () => {
     const matchesFilters = activeFilters.every(f => product.dietary.includes(f));
     
     return matchesSearch && matchesCategory && matchesFilters;
+  }).sort((a, b) => {
+    if (sortBy === 'price-low') return a.price - b.price;
+    if (sortBy === 'price-high') return b.price - a.price;
+    if (sortBy === 'rating') return b.rating - a.rating;
+    return b.reviewsCount - a.reviewsCount;
   });
 
   return (
@@ -112,6 +119,17 @@ const Menu = () => {
               </label>
             ))}
           </div>
+
+          <label className="mt-8 inline-flex items-center gap-3 text-sm text-text-dim">
+            <ArrowUpDown className="w-4 h-4 text-brand-primary" />
+            <span>Sort menu</span>
+            <select value={sortBy} onChange={(e) => setSortBy(e.target.value)} className="bg-bg-dark border border-white/10 rounded-full px-4 py-2 text-white focus:outline-none focus:border-brand-primary">
+              <option value="recommended">Recommended</option>
+              <option value="rating">Top rated</option>
+              <option value="price-low">Price: low to high</option>
+              <option value="price-high">Price: high to low</option>
+            </select>
+          </label>
         </div>
       </section>
 

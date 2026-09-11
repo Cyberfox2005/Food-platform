@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import burgerHero from '../assets/burger_hero.png';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import ProductCard from '../components/ProductCard';
+import { categories, products } from '../data/menuData';
 
 const Home = () => {
   return (
@@ -54,6 +56,39 @@ const Home = () => {
         {/* Background Decorative Elements */}
         <div className="absolute top-1/4 -left-20 w-64 h-64 bg-brand-primary/10 blur-[100px] rounded-full"></div>
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-brand-secondary/5 blur-[120px] rounded-full"></div>
+      </section>
+
+      <section className="py-24 border-y border-white/5 bg-white/[0.015]">
+        <div className="container mx-auto px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+            <div>
+              <p className="text-brand-primary uppercase tracking-[0.3em] text-xs font-bold mb-3">The orbit's best</p>
+              <h2 className="text-4xl md:text-6xl">Popular <span className="text-gradient">right now.</span></h2>
+            </div>
+            <Link to="/menu" className="text-sm text-text-dim hover:text-white transition-colors">View the full menu <span className="text-brand-primary">→</span></Link>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
+            {products.slice(0, 3).map(product => <ProductCard key={product.id} product={product} />)}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 container mx-auto px-6">
+        <div className="flex items-end justify-between mb-8">
+          <div>
+            <p className="text-brand-primary uppercase tracking-[0.3em] text-xs font-bold mb-3">Choose your trajectory</p>
+            <h2 className="text-4xl md:text-5xl">Browse by <span className="text-gradient">category.</span></h2>
+          </div>
+        </div>
+        <div className="flex gap-4 overflow-x-auto pb-4">
+          {categories.filter(category => category.id !== 'all').map(category => (
+            <Link key={category.id} to={`/menu?category=${category.id}`} className="min-w-[180px] p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-brand-primary/50 hover:-translate-y-1 transition-all">
+              <span className="text-2xl">{category.id === 'mains' ? '🍔' : category.id === 'sides' ? '🍟' : category.id === 'desserts' ? '🍫' : '🥤'}</span>
+              <strong className="block mt-8">{category.name}</strong>
+              <span className="text-xs text-text-dim">Explore selection →</span>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* Stats/Highlight Section */}
