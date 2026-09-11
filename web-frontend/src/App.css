@@ -13,16 +13,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #08060d;
+  background: #101820;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #aa3bff33;
+  background: #ff6b3533;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #aa3bff66;
+  background: #ff6b3566;
 }
 
 /* Add any specific component-level animations or overrides here */

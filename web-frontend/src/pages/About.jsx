@@ -41,10 +41,9 @@ const About = () => {
           >
             <div className="rounded-[4rem] overflow-hidden border border-white/10 shadow-glow">
                <img 
-                src="/src/assets/about-hero.jpg" 
+                src="/src/assets/hero.png" 
                 alt="Kitchen Craft" 
                 className="w-full h-[600px] object-cover grayscale hover:grayscale-0 transition-all duration-700" 
-                onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800'; }}
                />
             </div>
             <div className="absolute -bottom-10 -left-10 bg-brand-primary p-8 rounded-3xl shadow-glow hidden md:block">

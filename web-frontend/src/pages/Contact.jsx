@@ -2,6 +2,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { motion as Motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Send } from 'lucide-react';
+import heroImage from '../assets/hero.png';
 
 const Contact = () => {
   return (
@@ -65,7 +66,7 @@ const Contact = () => {
 
               {/* Mock Map */}
               <div className="h-64 bg-white/5 rounded-[2.5rem] border border-white/10 relative overflow-hidden group">
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1200')] bg-cover opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-700"></div>
+                <div className="absolute inset-0 bg-cover opacity-20 grayscale group-hover:grayscale-0 group-hover:opacity-40 transition-all duration-700" style={{ backgroundImage: `url(${heroImage})` }}></div>
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div className="bg-brand-primary p-4 rounded-full shadow-glow animate-bounce">
                     <MapPin className="text-white w-6 h-6" />

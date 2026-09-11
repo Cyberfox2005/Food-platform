@@ -10,6 +10,7 @@ const navItems = [
   ['Kitchen', ChefHat, '/admin/kitchen'],
   ['Products', Package, '/admin/products'],
   ['Inventory', Boxes, '/admin/inventory'],
+  ['Photos', Package, '/admin/photos'],
   ['Customers', Users, '/admin#customers'],
   ['Analytics', BarChart3, '/admin#analytics'],
   ['Delivery', ShoppingBag, '/admin/delivery'],

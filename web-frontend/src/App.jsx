@@ -20,6 +20,7 @@ import Team from './pages/Team';
 import Auth from './pages/AuthAccount';
 import AdminProducts from './pages/AdminProductManager';
 import AdminInventory from './pages/AdminInventory';
+import AdminPhotos from './pages/AdminPhotos';
 import './App.css';
 
 function App() {
@@ -47,6 +48,7 @@ function App() {
             <Route path="/auth" element={<Auth />} />
             <Route path="/admin/products" element={<AdminProducts />} />
             <Route path="/admin/inventory" element={<AdminInventory />} />
+            <Route path="/admin/photos" element={<AdminPhotos />} />
           </Routes>
         </Router>
         </CartProvider>
