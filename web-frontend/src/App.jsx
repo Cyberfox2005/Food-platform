@@ -27,7 +27,7 @@ function App() {
     <LanguageProvider>
       <UserProvider>
         <CartProvider>
-        <Router>
+        <Router basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/menu" element={<Menu />} />
